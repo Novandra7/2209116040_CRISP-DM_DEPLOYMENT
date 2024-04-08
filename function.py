@@ -166,15 +166,7 @@ def clustering (df):
         with open('kmeans.pkl', 'rb') as file:
             loaded_model = pickle.load(file)
         predicted = loaded_model.predict(data)
-        print(predicted)
-        if (predicted[0] == 0):
-            st.image('img/setosa.png', caption='Iris Setosa', width=300)
-        elif (predicted[0] == 1):
-            st.image('img/versicolor.png', caption='Iris Versicolor', width=300)
-        elif (predicted[0] == 2):
-            st.image('img/virginica.png', caption='Iris Virginica', width=300)
-        else :
-            st.error('Not Defined')
+        st.success(predicted)
 
 def klasifikasi(df):
     x_final = df.drop("class", axis=1)
