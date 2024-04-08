@@ -115,13 +115,12 @@ def compositionAndComparison (df):
     st.markdown(text)
 
 def predict ():
-    petalArea = st.number_input('Petal Area')
-    petalWidth = st.number_input('Petal Width')
-    petalLength = st.number_input('Petal Length')
-    sepalArea = st.number_input('Sepal Area')
-    sepalWidth = st.number_input('Sepal Width')
     sepalLength = st.number_input('Sepal Length')
-    button = st.button('Predict')
+    sepalWidth = st.number_input('Sepal Width')
+    petalLength = st.number_input('Petal Length')
+    petalWidth = st.number_input('Petal Width')
+    petalArea = st.number_input('Petal Area')
+    sepalArea = st.number_input('Sepal Area')
     data = pd.DataFrame({
         'sepallength' : [sepalLength],
         'sepalwidth' : [sepalWidth],
@@ -131,6 +130,7 @@ def predict ():
         'sepal_area' : [sepalArea]
     })
     st.write(data)
+    button = st.button('Predict')
     if (button):
         with open('gnb.pkl', 'rb') as file:
             loaded_model = pickle.load(file)
@@ -146,22 +146,23 @@ def predict ():
 
 def clustering (df):
     klasifikasi(df)
-    petalArea = st.number_input('Petal Area')
-    petalWidth = st.number_input('Petal Width')
-    petalLength = st.number_input('Petal Length')
-    sepalArea = st.number_input('Sepal Area')
-    sepalWidth = st.number_input('Sepal Width')
     sepalLength = st.number_input('Sepal Length')
+    sepalWidth = st.number_input('Sepal Width')
+    petalLength = st.number_input('Petal Length')
+    petalWidth = st.number_input('Petal Width')
+    petalArea = st.number_input('Petal Area')
+    sepalArea = st.number_input('Sepal Area')
+    data = pd.DataFrame({
+        'sepallength' : [sepalLength],
+        'sepalwidth' : [sepalWidth],
+        'petallength' : [petalLength],
+        'petalwidth' : [petalWidth],
+        'petal_area' : [petalArea],
+        'sepal_area' : [sepalArea]
+    })
+    st.write(data)
     button = st.button('Clust!')
     if (button):
-        data = pd.DataFrame({
-            'sepallength' : [sepalLength],
-            'sepalwidth' : [sepalWidth],
-            'petallength' : [petalLength],
-            'petalwidth' : [petalWidth],
-            'petalarea' : [petalArea],
-            'sepalarea' : [sepalArea]
-        })
         with open('kmeans.pkl', 'rb') as file:
             loaded_model = pickle.load(file)
         predicted = loaded_model.predict(data)
